@@ -308,7 +308,11 @@ Order of operations:
    schematic, not vice versa, and it prevents late "out of stock" redesigns.
 2. **Golden references per block:** hub datasheet reference schematic, ROBOTIS
    U2D2 schematic (servo front-end), HD3SS3220 datasheet (USB-C upstream),
-   vendor design-tool output (bucks).
+   vendor design-tool output (bucks). Collected under `datasheets/` — see
+   `datasheets/README.md`; ROBOTIS does not publish the U2D2 schematic, the
+   golden reference is their recommended TTL / RS-485 circuits instead
+   (`datasheets/reference/robotis/`). The functional behaviour these blocks
+   must deliver is written up in `FUNCTIONAL.md`.
 3. **Hierarchical sheets, multi-instance:** the root sheet mirrors §1. The
    dual-mode servo front-end is *one* sheet instantiated 4×; the generic USB
    port is *one* sheet instantiated 3× — fix a bug once, every instance follows.

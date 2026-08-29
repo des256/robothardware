@@ -1,6 +1,8 @@
 # robothardware — Robot Backbone PCB
 
-KiCad workspace for the backbone board described in [`HARDWARE.md`](HARDWARE.md).
+KiCad workspace for the backbone board described in [`HARDWARE.md`](HARDWARE.md)
+(how and with what) and [`FUNCTIONAL.md`](FUNCTIONAL.md) (what it does, seen from
+its connectors and from software).
 Tooling follows [kevins-kicad-helpers](https://github.com/lynaghk/kevins-kicad-helpers)
 (vendored at `vendor/kevins-kicad-helpers`, on PATH via `mise.toml`).
 
@@ -25,6 +27,9 @@ Tooling follows [kevins-kicad-helpers](https://github.com/lynaghk/kevins-kicad-h
   with `kkh-download-jlcpcb-parts-database jlcpcb_parts.db`). Check freshness:
   `sqlite3 jlcpcb_parts.db "SELECT value FROM meta WHERE key='generated_at'"`.
 - `parts-shortlist.md` — distilled candidate parts per block, queried from the DB.
+- `datasheets/` — part datasheets for every curated pick plus vendor reference
+  designs and the ROBOTIS servo circuits (`datasheets/README.md` is the index;
+  `datasheets/fetch.sh` re-downloads from `manifest.tsv`).
 
 ## Schematic plan (mirrors HARDWARE.md sections 1 and 8)
 

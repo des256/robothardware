@@ -1,0 +1,35 @@
+# file	lcsc	mpn	block	url
+tusb8041.pdf	C544686	TUSB8041IRGCR	usb-hub	https://www.ti.com/lit/gpn/tusb8041
+rts5411s.pdf	C5356838	RTS5411S-GR	usb-hub-alt	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8589838617779597312
+cyusb3304.pdf	C462531	CYUSB3304-68LTXC	usb-hub-alt	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8589838206326763520
+ch344.pdf	C2988084	CH344Q	servo-uart	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8618866915339493376
+ch344.pdf	C2887250	CH344L	servo-uart-alt	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8618866860662546432
+sp3485en.pdf	C8963	SP3485EN-L/TR	rs485-xcvr	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579709476519542784
+sn74lvc2g241.pdf	C10430	SN74LVC2G241DCUR	ttl-buffer	https://www.ti.com/lit/ds/symlink/sn74lvc2g241.pdf
+sn74lvc1g126.pdf	C7834	SN74LVC1G126DBVR	ttl-buffer-alt	https://www.ti.com/lit/gpn/sn74lvc1g126
+sn74lvc1g125.pdf	C23654	SN74LVC1G125DBVR	ttl-buffer-alt	https://www.ti.com/lit/gpn/sn74lvc1g125
+lm5145.pdf	C485912	LM5145RGYR	buck-ctrl	https://www.ti.com/lit/gpn/lm5145
+lm5143.pdf	C5219297	LM5143RHAR	buck-ctrl-dual-alt	https://www.ti.com/lit/gpn/lm5143
+tps54560.pdf	C31966	TPS54560DDAR	buck-5v-usb	https://www.ti.com/lit/gpn/tps54560
+tlv62569.pdf	C141836	TLV62569DBVR	buck-3v3	https://www.ti.com/lit/gpn/tlv62569
+tps1663.pdf	C1849461	TPS16630PWPR	efuse-12v	https://www.ti.com/lit/gpn/tps1663
+tps25961.pdf	C5571272	TPS25961DRVR	efuse-5v	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8590902654426439680
+sy6280.pdf	C55136	SY6280AAC	vbus-switch	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8586176486478368768
+tps2553.pdf	C55266	TPS2553DBVR	vbus-switch-alt	https://www.ti.com/lit/gpn/tps2553
+hd3ss3220.pdf	C165155	HD3SS3220RNHR	usbc-upstream	https://www.ti.com/lit/gpn/hd3ss3220
+lm74700-q1.pdf	C2941042	LM74700QDBVRQ1	ideal-diode	https://www.ti.com/lit/gpn/lm74700-q1
+smbj-series.pdf	C19077578	SMBJ24A	tvs-19v	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8564879132338790400
+smbj-series.pdf	C19077567	SMBJ13A	tvs-12v	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8564879123408982016
+smbj-series.pdf	C19077560	SMBJ6.0A	tvs-5v	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8564879118736121856
+tpd4e05u06.pdf	C138714	TPD4E05U06DQAR	esd-usb3	https://www.ti.com/lit/gpn/tpd4e05u06
+usblc6-2sc6.pdf	C2687116	USBLC6-2SC6	esd-usb2-ttl	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8755886574108323840
+sm712.pdf	C7420375	SM712	esd-rs485	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8590905169016410112
+jst-eh-series.pdf	C160258	B4B-EH-A(LF)(SN)	conn-rs485	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588891962850627584
+jst-eh-series.pdf	C160259	B3B-EH-A(LF)(SN)	conn-ttl	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8564893974092939264
+jst-eh-series.pdf	C265068	S4B-EH(LF)(SN)	conn-rs485-alt	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8561889239836762112
+jst-eh-series.pdf	C263754	S3B-EH(LF)(SN)	conn-ttl-alt	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588890020664631297
+xt30pw-m.pdf	C431092	XT30PW-M	conn-19v	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588889116385136640
+dc-005-a200.pdf	C720557	DC-005-A200	conn-19v-out-alt	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588896245406842880
+usba3-hc-st-003-01-j.pdf	C2845330	HC-ST-003-01-J	conn-usba3	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588944600710569984
+usbc-24p-qt.pdf	C2681555	TYPE-C 24P QT	conn-usbc	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8756352863621144576
+usbc-24p-qcht.pdf	C456013	TYPE-C 24P QCHT	conn-usbc-alt	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8756352776610172928
