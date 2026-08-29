@@ -1,0 +1,9 @@
+# Hardware workspace env - vendored helpers on PATH per kevins-kicad-helpers README.
+# Tools mirror the submodule's own mise.toml so kkh scripts run from this directory.
+[tools]
+"github:babashka/babashka" = "1.12.218"
+"github:weavejester/cljfmt" = "0.16.4"
+uv = "latest"
+
+[env]
+_.path = ["{{config_root}}/vendor/kevins-kicad-helpers/bin"]

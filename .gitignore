@@ -1,0 +1,13 @@
+# JLCPCB parts database (~5.7 GB, rebuilt daily via kkh-download-jlcpcb-parts-database)
+jlcpcb_parts.db
+
+# kkh build outputs (date + git-revision stamped directories)
+backbone/2[0-9][0-9][0-9]-*/
+
+# KiCad backups and caches
+*-backups/
+*.kicad_sch-bak
+*.kicad_pcb-bak
+fp-info-cache
+~*.lck
+_autosave-*

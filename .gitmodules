@@ -1,0 +1,3 @@
+[submodule "vendor/kevins-kicad-helpers"]
+	path = vendor/kevins-kicad-helpers
+	url = https://github.com/lynaghk/kevins-kicad-helpers
