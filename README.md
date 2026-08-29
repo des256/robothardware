@@ -17,6 +17,17 @@ Tooling follows [kevins-kicad-helpers](https://github.com/lynaghk/kevins-kicad-h
 4. **KiCad plugins** — installed: bennymeg/Fabrication-Toolkit (JLCPCB outputs;
    `kkh build` drives it) and CDFER/JLCPCB-Kicad-Library (symbols/footprints
    for JLC Basic parts).
+5. **Analyzer toolchain** (`kkh check` / `kkh-analyze-schematic` run a JVM
+   Clojure tool) — Java temurin-25 and clj-kondo via
+   `mise -C vendor/kevins-kicad-helpers/analyzer install`. Clojure needs a
+   workaround: mise 2026.8.14 cannot resolve the registry name `clojure`, so
+   the CLI was installed through the asdf plugin the analyzer's `mise.lock`
+   names (`mise plugins install clojure https://github.com/asdf-community/asdf-clojure.git`)
+   and symlinked onto the PATH: `~/.local/bin/{clojure,clj}` →
+   `~/.local/share/mise/installs/clojure/1.12.5.1654/bin/`. `mise exec` then
+   finds it from the ambient PATH. Verified: `kkh-analyze-schematic` runs.
+6. **`KICAD_PYTHON`** — set in `mise.toml` to `/usr/bin/python3` (the PATH
+   `python3` is PlatformIO's venv and cannot import `pcbnew`).
 
 ## Project layout
 
@@ -48,7 +59,20 @@ Hierarchical sheets under `backbone.kicad_sch`:
 
 Conventions (see HARDWARE.md section 8): `max_mA` property on every load;
 net name `VBUS` reserved for the upstream USB-C VBUS only; servo rails are
-`+12V_SERVO` / `+5V_SERVO`.
+`+12V_SERVO` / `+5V_SERVO`. In addition `kkh check` fails any placed part
+(non-DNP, with a footprint) whose `LCSC` field is empty — CDFER-library and
+`kkh-import-easyeda-parts` symbols carry it, symbols taken from KiCad's own
+libraries (`Device:R`, …) need it filled in by hand.
 
-Workflow: `kkh check` from the first sheet onward; `kkh build` for the
-JLCPCB order package. Put `${KKH_VERSION_DATE}` on the silkscreen.
+Workflow while drawing sheets (the PCB is still empty, so `kkh check` fails
+at the DRC schematic-parity step until footprints are placed):
+
+```sh
+kicad-cli sch erc --exit-code-violations -o /dev/stdout backbone/backbone.kicad_sch
+kkh-analyze-schematic backbone/backbone.kicad_sch     # max_mA totals, VBUS < 10 uF
+kkh-import-easyeda-parts C544686 C2988084 ...          # symbols/footprints per LCSC number
+```
+
+From layout onward: `kkh check`, then `kkh build` for the JLCPCB order
+package. Put `${KKH_VERSION_DATE}` on the silkscreen (the first `kkh check`
+adds the placeholder text variable to `backbone.kicad_pro`; commit it).

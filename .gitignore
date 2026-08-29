@@ -1,8 +1,10 @@
-# JLCPCB parts database (~5.7 GB, rebuilt daily via kkh-download-jlcpcb-parts-database)
+# JLCPCB parts database (~450 MB, rebuilt anytime via kkh-download-jlcpcb-parts-database)
 jlcpcb_parts.db
 
-# kkh build outputs (date + git-revision stamped directories)
-backbone/2[0-9][0-9][0-9]-*/
+# kkh check/build outputs: outputs/<date-revision>/ (reports, gerbers, PDFs, STEP)
+# and production/ (Fabrication Toolkit scratch). kkh skips both when discovering boards.
+backbone/outputs/
+backbone/production/
 
 # KiCad backups and caches
 *-backups/
