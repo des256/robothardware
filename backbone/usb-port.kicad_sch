@@ -1,0 +1,330 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "92d55ad5-c9a3-5898-a702-926f85911cb9")
+	(paper "A4")
+	(title_block
+		(title "Generic USB-A 3.0 downstream port (one sheet, three instances)")
+		(rev "A")
+		(comment 1 "Sheet 8/9/10 — see HARDWARE.md §8, FUNCTIONAL.md")
+	)
+	(lib_symbols)
+	(text "USB PORT — one sheet, instantiated 3× as usb-port-1..3 (hub DS1..DS3). Any device fits any port.\nGolden reference: TUSB8041 EVM downstream port, datasheets/reference/ti-slvaf82b-esd-surge-protection-usb.pdf\nParts (LCSC): SY6280AAC C55136 (Ilim = 6800 / Rset, 1.5 A on every port, EN must not float), TPD4E05U06 C138714, USBLC6-2 C2687116, USB-A 3.0 HC-ST-003-01-J C2845330\nPins: SSTX/SSRX (SSTX = hub transmits, so input here), DP/DM, PWRCTL in from hub, OVERCUR_N out to hub.\nPower: +5V_USB → SY6280 → VBUS_OUT → receptacle. Name the switched output VBUS_OUT (pattern /usb-port-*/VBUS_OUT → PWR_USB); never name it VBUS.\nEverything per instance is identical (values, DNP and footprints are shared between instances).\nConsumes: +5V_USB, +3V3, GND."
+		(exclude_from_sim no)
+		(at 12.7 12.7 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "065adae7-4456-5042-82b4-9ca5e064008c")
+	)
+	(wire
+		(pts
+			(xy 30.48 81.28) (xy 55.88 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "076af914-1f89-5792-8176-77285076daa9")
+	)
+	(wire
+		(pts
+			(xy 30.48 101.6) (xy 55.88 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1f026add-b3da-514d-9f4e-12d385669188")
+	)
+	(wire
+		(pts
+			(xy 30.48 106.68) (xy 55.88 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "354e1fd6-b08b-5d09-b889-d9d3e9152183")
+	)
+	(wire
+		(pts
+			(xy 30.48 71.12) (xy 55.88 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "434d7edd-06c3-5f5c-ac75-8d2d4b1afeeb")
+	)
+	(wire
+		(pts
+			(xy 30.48 91.44) (xy 55.88 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a48dcfaf-9824-5f6a-b946-3baef4d43128")
+	)
+	(wire
+		(pts
+			(xy 30.48 86.36) (xy 55.88 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ba673a75-fc14-5079-95a0-b76f6cfd65a7")
+	)
+	(wire
+		(pts
+			(xy 30.48 96.52) (xy 55.88 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be4a41fe-1290-5095-a9ce-26650e98687c")
+	)
+	(wire
+		(pts
+			(xy 30.48 76.2) (xy 55.88 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e05c4040-293c-5d22-8743-5278c3d61742")
+	)
+	(hierarchical_label "SSRX_P"
+		(shape output)
+		(at 30.48 81.28 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "07e3d00d-1e35-5a70-bff8-847b327642fb")
+	)
+	(hierarchical_label "SSRX_N"
+		(shape output)
+		(at 30.48 86.36 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1d59b04d-0256-5eea-87db-e31c76923074")
+	)
+	(hierarchical_label "OVERCUR_N"
+		(shape output)
+		(at 30.48 106.68 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "21026c49-906d-55e9-b433-508c4d2827b4")
+	)
+	(hierarchical_label "SSTX_N"
+		(shape input)
+		(at 30.48 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "4dc6da04-94e6-5874-91b4-77e281981da4")
+	)
+	(hierarchical_label "PWRCTL"
+		(shape input)
+		(at 30.48 101.6 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "62bb9e5f-2542-5f14-a2bd-a593a3f54d6b")
+	)
+	(hierarchical_label "DP"
+		(shape bidirectional)
+		(at 30.48 91.44 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "be9673ed-99d5-564d-b869-8ba887ae37c4")
+	)
+	(hierarchical_label "SSTX_P"
+		(shape input)
+		(at 30.48 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "bf05a8b8-c531-55bc-95ab-ae072bb69fcb")
+	)
+	(hierarchical_label "DM"
+		(shape bidirectional)
+		(at 30.48 96.52 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "fa93af7d-ffc7-5ea2-a880-e22c2ef65720")
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 55.88 86.36 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3581b507-bdcf-5cbf-8e9b-35d81b5b30ce")
+		(property "Netclass" "USB3_SS"
+			(at 56.896 83.82 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 55.88 71.12 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "69c945fc-a445-56e9-ae39-3c996fcf9330")
+		(property "Netclass" "USB3_SS"
+			(at 56.896 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 55.88 76.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8230883f-61d1-5575-9979-40ea83d4a56b")
+		(property "Netclass" "USB3_SS"
+			(at 56.896 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 55.88 91.44 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "89e3d802-2f47-58b4-b1ab-4f44166c1893")
+		(property "Netclass" "USB2_HS"
+			(at 56.896 88.9 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 55.88 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8ad8b1a5-6773-58be-a5e6-84f39b07695b")
+		(property "Netclass" "USB2_HS"
+			(at 56.896 93.98 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 55.88 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9174080f-c0ea-53fe-97e5-2d537cb122f6")
+		(property "Netclass" "USB3_SS"
+			(at 56.896 78.74 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+)

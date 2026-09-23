@@ -13,3 +13,6 @@ backbone/production/
 fp-info-cache
 ~*.lck
 _autosave-*
+
+# KiCad 10 local design history (has its own .git; per-machine, not project data)
+backbone/.history/

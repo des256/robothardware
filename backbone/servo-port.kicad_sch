@@ -1,0 +1,87 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "041e2379-eec6-552d-9716-13e257246ce1")
+	(paper "A4")
+	(title_block
+		(title "Dual-mode servo port: RS-485 or TTL front-end + port power")
+		(rev "A")
+		(comment 1 "Sheet 12/13/14/15 — see HARDWARE.md §8, FUNCTIONAL.md")
+	)
+	(lib_symbols)
+	(text "SERVO PORT — one sheet, instantiated 4× as servo-port-0..3. Contains everything replicated per port:\n  front-end: SP3485EN C8963 (DI=TXD, DE=TNOW, R̄E̅=TNOW when RS-485 selected) + SN74LVC2G241 C10430 (2A=TXD, 2OE=TNOW, 1OE̅=TNOW when TTL selected, 1Y=RXD)\n  mode select (D2): jumper / solder bridge routes TNOW to exactly ONE receiver enable; the other is tied inactive. Both receiver outputs wire-OR onto RXD (10 kΩ pull-up).\n  RS-485 side: A/B → J4-pin B4B-EH-A C160258 (1 GND, 2 VDD, 3 D+, 4 D−), SM712 C7420375, 120 Ω termination as 0 Ω option, +12V_SERVO → TPS16630 e-fuse C1849461 → ≥470 µF → SMBJ13A → VDD_485\n  TTL side: DATA → J3-pin B3B-EH-A C160259 (1 GND, 2 VDD, 3 DATA), 10 kΩ pull-up to +3V3, 10–22 Ω series, 5 V-working TVS, +5V_SERVO → TPS25961 e-fuse C5571272 → ≥470 µF → SMBJ6.0A → VDD_TTL\nGolden reference: datasheets/reference/robotis/dynamixel-x-ttl-circuit-3v3-74lvc2g241.png, dynamixel-x-rs485-circuit.jpg, connector pinout PNGs\nNet names the project patterns key on: A, B → RS485; DATA → TTL_DATA; VDD_485, VDD_TTL → PWR_SERVO.\nPer-instance differences are impossible (values/DNP shared) — the mode default is one choice for all four ports.\nOpen items: D1, D2, D3 (e-fuse latch/retry, GPIO enable), V1.  Consumes: +12V_SERVO, +5V_SERVO, +3V3, GND.  Test points: TXD RXD TNOW A B DATA."
+		(exclude_from_sim no)
+		(at 12.7 12.7 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "cf301665-0431-543d-9e1c-f8469ed8c440")
+	)
+	(wire
+		(pts
+			(xy 30.48 71.12) (xy 55.88 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "25c7cec0-25a8-59ec-aceb-ea367a313fc5")
+	)
+	(wire
+		(pts
+			(xy 30.48 76.2) (xy 55.88 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a5b2784-9f48-5530-9549-39cfc0ae0dd0")
+	)
+	(wire
+		(pts
+			(xy 30.48 81.28) (xy 55.88 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7f10fce-0f1b-554a-9a27-6aa648457a40")
+	)
+	(hierarchical_label "RXD"
+		(shape output)
+		(at 30.48 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "36a65a6b-6b2d-5f43-891c-58dc321374a9")
+	)
+	(hierarchical_label "TNOW"
+		(shape input)
+		(at 30.48 81.28 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "742b8b81-d0b4-51fb-965b-6b4af837e441")
+	)
+	(hierarchical_label "TXD"
+		(shape input)
+		(at 30.48 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "dffe75d9-2fae-5056-be4b-d8bf5a5a560a")
+	)
+)

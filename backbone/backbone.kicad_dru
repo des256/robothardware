@@ -1,0 +1,66 @@
+(version 1)
+
+# backbone.kicad_dru — layer-specific geometry and keep-outs per net class.
+# Net classes live in backbone.kicad_pro (Board Setup → Net Classes). Nets get a class from a directive
+# label inside a sheet (signals) or from the project's net-class patterns (rails, per-port nets).
+# Stackup: F.Cu / In1.Cu = GND plane / In2.Cu = PWR / B.Cu — JLCPCB JLC04161H-7628 (HARDWARE.md §6).
+# The names in intersectsArea() are rule areas you draw in the PCB editor and name in their properties.
+
+# ---------------------------------------------------------------------------------------------
+# USB 3.0 SuperSpeed pairs (USB3_SS): F.Cu only, so every pair is referenced to the In1.Cu ground
+# plane, and no vias (no stubs). Relax deliberately if a layout genuinely needs a layer change.
+# ---------------------------------------------------------------------------------------------
+(rule "usb3_ss_top_layer_only"
+	(condition "A.hasNetclass('USB3_SS') && A.Layer != 'F.Cu'")
+	(constraint disallow track))
+
+(rule "usb3_ss_no_vias"
+	(condition "A.hasNetclass('USB3_SS')")
+	(constraint disallow via))
+
+# TODO impedance geometry — fill from JLCPCB's impedance calculator for JLC04161H-7628, 90 Ω differential.
+# Set the same numbers in the USB3_SS / USB2_HS net classes (Board Setup → Net Classes), then delete this note.
+# (rule "usb3_ss_geometry"
+# 	(condition "A.hasNetclass('USB3_SS')")
+# 	(layer outer)
+# 	(constraint track_width (opt <width>mm))
+# 	(constraint diff_pair_gap (opt <gap>mm)))
+# (rule "usb2_hs_geometry"
+# 	(condition "A.hasNetclass('USB2_HS')")
+# 	(layer outer)
+# 	(constraint track_width (opt <width>mm))
+# 	(constraint diff_pair_gap (opt <gap>mm)))
+
+# Copper pours keep their distance from the high-speed pairs on the same layer (pattern from KiCad's
+# own Jetson demo rules: 1 mm), so a pour never becomes the pair's reference.
+(rule "hs_pairs_zone_clearance"
+	(condition "(A.hasNetclass('USB3_SS') || A.hasNetclass('USB2_HS')) && B.Type == 'Zone' && A.Layer == B.Layer")
+	(constraint clearance (min 1mm)))
+
+# ---------------------------------------------------------------------------------------------
+# Buck switch nodes (SW_NODE): outer layers only, short, and kept away from every signal class.
+# HARDWARE.md §6: "Keep buck inductors and switch nodes away from USB, RS-485 and TTL DATA routing."
+# ---------------------------------------------------------------------------------------------
+(rule "sw_node_outer_layers_only"
+	(condition "A.hasNetclass('SW_NODE')")
+	(layer inner)
+	(constraint disallow track))
+
+(rule "sw_node_away_from_signals"
+	(condition "A.hasNetclass('SW_NODE') && (B.hasNetclass('USB3_SS') || B.hasNetclass('USB2_HS') || B.hasNetclass('RS485') || B.hasNetclass('TTL_DATA'))")
+	(constraint clearance (min 3mm)))
+
+# ---------------------------------------------------------------------------------------------
+# Servo current stays out of the USB section (HARDWARE.md §6: "route servo returns so they don't
+# flow under the USB section"). Draw a rule area named usb_section around the USB-C, hub and USB-A
+# ports in the PCB editor; servo-rail copper may not enter it.
+# ---------------------------------------------------------------------------------------------
+(rule "servo_power_out_of_usb_section"
+	(condition "A.hasNetclass('PWR_SERVO') && A.intersectsArea('usb_section')")
+	(constraint disallow track via zone))
+
+# Example of a sheet-derived component-class rule (Board Setup → Design Rules → Component Classes,
+# "Assign component class per sheet" is enabled in backbone.kicad_pro):
+# (rule "servo_ports_out_of_usb_section"
+# 	(condition "A.hasComponentClass('servo-port-0') && A.intersectsArea('usb_section')")
+# 	(constraint disallow footprint))

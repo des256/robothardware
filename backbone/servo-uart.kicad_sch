@@ -1,0 +1,364 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "65e49c19-d49a-5bb3-9f41-22aeeb619b2e")
+	(paper "A4")
+	(title_block
+		(title "Servo UART bridge: CH344Q quad UART on hub port DS4")
+		(rev "A")
+		(comment 1 "Sheet 11 — see HARDWARE.md §8, FUNCTIONAL.md")
+	)
+	(lib_symbols)
+	(text "SERVO UART — CH344Q, USB 2.0 from hub DS4, four UARTs → servo-port-0..3 (UART index ↔ port index is fixed: software contract)\nGolden reference: datasheets/ch344.pdf (CH344DS1, Chinese; TNOW facts in FUNCTIONAL.md §5.2)\nParts (LCSC): CH344Q C2988084, USBLC6-2 C2687116 on DS4_DP/DM\nTNOW: DTRx/TNOWx/GPIOx pins (Q package 39, 18, 19, 34) become TNOW with a 4.7 kΩ pull-down at power-on. Add 10 kΩ pull-downs on the TNOW lines (idle = receive).\nRXD: fit 10 kΩ pull-ups to +3V3 on all four RXDx (RXD3 has no internal pull-up).\nOpen items: V1 (TNOW polarity — scope the dongle first), V2 (TNOW release latency vs Return Delay Time)\nConsumes: +3V3, GND.  Test points on every TXD/RXD/TNOW."
+		(exclude_from_sim no)
+		(at 12.7 12.7 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "4ac1a7e8-b243-51c4-bfa4-7dd7c572f1db")
+	)
+	(wire
+		(pts
+			(xy 30.48 81.28) (xy 55.88 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0371f18e-80d4-584f-8b00-ea5f140740d4")
+	)
+	(wire
+		(pts
+			(xy 30.48 127) (xy 55.88 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b9fea9f-1def-5d2b-98ec-c0f4949685a0")
+	)
+	(wire
+		(pts
+			(xy 30.48 137.16) (xy 55.88 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30455933-f5df-5a65-b4e6-f3f9779001a3")
+	)
+	(wire
+		(pts
+			(xy 30.48 71.12) (xy 55.88 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "35f16316-f045-5050-8e41-5e11ada92ae1")
+	)
+	(wire
+		(pts
+			(xy 30.48 76.2) (xy 55.88 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a5f402d-4bbc-58c0-ac18-d8b7fad95d89")
+	)
+	(wire
+		(pts
+			(xy 30.48 111.76) (xy 55.88 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5a7ffb13-defd-557e-97eb-b529b0593fd9")
+	)
+	(wire
+		(pts
+			(xy 30.48 101.6) (xy 55.88 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78061d63-84f6-5b3b-bf34-900fa0bd8faf")
+	)
+	(wire
+		(pts
+			(xy 30.48 106.68) (xy 55.88 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3583ca5-e1b0-575a-98c3-0b039a890dea")
+	)
+	(wire
+		(pts
+			(xy 30.48 96.52) (xy 55.88 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b1b1102c-28cc-5558-89a1-a3a3a8930576")
+	)
+	(wire
+		(pts
+			(xy 30.48 121.92) (xy 55.88 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb9b9c12-b7ba-5f64-976c-e5e4c0fc4629")
+	)
+	(wire
+		(pts
+			(xy 30.48 116.84) (xy 55.88 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bfb6d30c-09e6-5e6e-b47d-b95e2f88a727")
+	)
+	(wire
+		(pts
+			(xy 30.48 132.08) (xy 55.88 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ca0120ac-47e6-5ffa-88fc-c82e4e0903cc")
+	)
+	(wire
+		(pts
+			(xy 30.48 91.44) (xy 55.88 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e00e340d-ce0e-538b-891e-da4606f9c83a")
+	)
+	(wire
+		(pts
+			(xy 30.48 86.36) (xy 55.88 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e3ebcee0-f7d6-557d-a63d-e2f7c4c5704a")
+	)
+	(hierarchical_label "UART0_TXD"
+		(shape output)
+		(at 30.48 81.28 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "180760a9-043e-5f0f-b32d-1a3e42e1e1f9")
+	)
+	(hierarchical_label "UART1_TNOW"
+		(shape output)
+		(at 30.48 106.68 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1c0e06bc-0861-5914-bf75-a4acbea7cc32")
+	)
+	(hierarchical_label "DS4_DP"
+		(shape bidirectional)
+		(at 30.48 71.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2b544b5f-27cd-5332-af09-c5745b9cebec")
+	)
+	(hierarchical_label "UART1_TXD"
+		(shape output)
+		(at 30.48 96.52 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "37e03cc9-0728-5367-8da4-87704afab08b")
+	)
+	(hierarchical_label "UART3_RXD"
+		(shape input)
+		(at 30.48 132.08 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "732cd7f2-7355-5a39-89c4-b092e02cbc0c")
+	)
+	(hierarchical_label "UART1_RXD"
+		(shape input)
+		(at 30.48 101.6 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "877e2445-4bae-5594-91c0-24db8caac7d1")
+	)
+	(hierarchical_label "UART0_TNOW"
+		(shape output)
+		(at 30.48 91.44 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a03d58f5-058e-5c3c-a145-ff2876873734")
+	)
+	(hierarchical_label "UART2_RXD"
+		(shape input)
+		(at 30.48 116.84 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a16cfcab-715f-53d8-bdf4-4a88da4b69f0")
+	)
+	(hierarchical_label "UART0_RXD"
+		(shape input)
+		(at 30.48 86.36 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a8fde4c2-50c8-55ff-a9e7-8a674309acd8")
+	)
+	(hierarchical_label "UART2_TNOW"
+		(shape output)
+		(at 30.48 121.92 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b13456e9-6d73-57f9-8bbc-71a531af752d")
+	)
+	(hierarchical_label "DS4_DM"
+		(shape bidirectional)
+		(at 30.48 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c3128f47-fe26-5834-a234-81561e460a17")
+	)
+	(hierarchical_label "UART3_TNOW"
+		(shape output)
+		(at 30.48 137.16 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e7a93e75-6c3b-597f-a279-90b29d22ee05")
+	)
+	(hierarchical_label "UART3_TXD"
+		(shape output)
+		(at 30.48 127 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f4761b46-b1af-50bc-855e-71085bea50fc")
+	)
+	(hierarchical_label "UART2_TXD"
+		(shape output)
+		(at 30.48 111.76 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "fc6364b2-0c65-52d0-95b7-fa7122d49c8c")
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 55.88 71.12 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "33bc369a-92ca-586d-83e6-4d8a942e72e6")
+		(property "Netclass" "USB2_HS"
+			(at 56.896 68.58 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 55.88 76.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b79095b7-51be-5444-9c70-783dec064370")
+		(property "Netclass" "USB2_HS"
+			(at 56.896 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+)

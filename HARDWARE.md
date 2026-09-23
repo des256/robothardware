@@ -318,8 +318,10 @@ Order of operations:
    port is *one* sheet instantiated 3× — fix a bug once, every instance follows.
 4. **Draw the risky blocks first** (servo front-end, USB-C upstream). The power
    sheets are cookbook copies of vendor reference designs and come after.
-5. **Conventions that feed the automation:** put `max_mA` properties on loads so
-   `kkh-analyze-schematic` totals per-rail current against the §2 budget.
+5. **Conventions that feed the automation:** put `max_mA` properties on the
+   3.3 V ICs so `kkh-analyze-schematic` totals their draw — it sums every
+   `max_mA` regardless of rail and asserts ≤ 300 mA, so it is a 3.3 V-rail
+   check, not the §2 budget (that lives in FUNCTIONAL.md §4).
    Reserve the net name `VBUS` for the true upstream VBUS so its < 10 µF check
    enforces the USB device-side inrush limit — servo rails are `+12V_SERVO` /
    `+5V_SERVO` so their deliberately huge bulk banks don't trip it.
