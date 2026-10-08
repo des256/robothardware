@@ -6,7 +6,9 @@ Everything the schematic gets drawn from, so nobody designs from memory.
   URLs come from the JLCPCB catalog (`jlcpcb_parts.db`); TI links were rewritten
   to the English editions (`/lit/` instead of `/cn/lit/`).
 - `fetch.sh` (re)downloads everything in the manifest and verifies each file is a
-  PDF. Safe to re-run; cached files are skipped.
+  PDF. Safe to re-run; cached files are skipped. LCSC-hosted sheets need the
+  `wmsc.lcsc.com/wmsc/upload/file/pdf/…` form of the link (the `www.lcsc.com/datasheet/…`
+  form returns an HTML viewer), so the manifest uses those.
 - `reference/` holds vendor reference designs, app notes and the ROBOTIS
   circuits — the "golden references" HARDWARE.md §8 asks for per block.
 
@@ -43,6 +45,14 @@ one Hongjiacheng sheet covers all SMBJ values, one WCH sheet covers CH344Q/L.
 | 19 V out (alt) | DC-005-A200 (C720557) | `dc-005-a200.pdf` | |
 | USB-A 3.0 receptacle ×3 | HC-ST-003-01-J (C2845330) | `usba3-hc-st-003-01-j.pdf` | Chinese drawing |
 | USB-C receptacle | TYPE-C 24P QT (C2681555), QCHT (C456013) | `usbc-24p-qt.pdf`, `usbc-24p-qcht.pdf` | Chinese drawings |
+| Buck / ideal-diode FET ×5 | CSD18532Q5B (C882766) | `csd18532q5b.pdf` | 60 V, 2.5 mΩ, SON 5×6; RILIM 240 Ω / 150 Ω sized for it |
+| Buck inductors | TMPA1265SP-4R7MN-D (C2880057), TMPC1265HP-3R3MG-D (C357272), SMNR4020-2.2UH (C135262) | `tmpa1265sp-4r7.pdf`, `tmpc1265hp-3r3.pdf`, `smnr4020-2r2.pdf` | 12 V, 5 V servo, 3V3/1V1 bucks |
+| Buck inductor, +5V_USB | 7447798720 (C105681) | `we-7447798720.pdf` | Würth 7.2 µH 6 A (TPS54560EVM part) |
+| Catch diode, +5V_USB | B560C-13-F (C85100) | `b560c.pdf` | |
+| 100 V input ceramics | C3225X7S2A475KT000N (C342614), C3225X7R2A225KT5L0U (C76686) | `tdk-c3225x7s2a475k.pdf`, `tdk-c3225x7r2a225k.pdf` | 1210 |
+| Buck output ceramics | GRM32ER61C476KE15L (C77101), CS3225X7R226K250NRL (C2918511) | `murata-grm32er61c476k.pdf`, `samwha-cs3225x7r226k.pdf` | 1210 |
+| Bulk capacitors | RVE470UF35V167RV084 (C5155332) | `rve470uf35v.pdf` | 19 V input bank. The polymer MA25V470M8X10 (C46550466) / MA10V470M6X8 (C46550459) have no datasheet file in the JLCPCB catalog — spec is the catalog line (25 mΩ / 20 mΩ, 4.1 A / 3.1 A ripple) |
+| Fuses | 0453015.MR (C178997), 1206TD-4A (C2838918) | `littelfuse-0453015.pdf`, `prosemi-1206td-4a.pdf` | 15 A time-lag input, 4 A time-lag Jetson |
 
 ## Reference designs and app notes (`reference/`)
 

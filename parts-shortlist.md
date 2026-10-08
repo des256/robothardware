@@ -23,7 +23,7 @@ datasheet read before the schematic is drawn.**
 | Buck 5 V USB | TPS54560DDAR | C31966 | 1.02 | 60 V in, 5 A, SOIC-8-EP, 47k stock. Bound port limits so the sum fits (HARDWARE.md section 3). |
 | Buck 3.3 V | TLV62569DBVR | C141836 | 0.07 | 2 A, Vin <= 5.5 V -- fed from the quiet 5 V USB rail. |
 | eFuse, servo buses | TPS16630PWPR / TPS25961DRVR | C1849461 / C5571272 | 2.50 / 0.39 | Current class must match the bus: TPS1663x (60 V, ~6 A class) for 12 V buses; TPS25961 (19 V, <= 2 A) only for light 5 V TTL buses. Recompute per fleet; polyfuse + TVS is the budget fallback. |
-| VBUS switch (x3) | SY6280AAC | C55136 | 0.10 | Resistor-set current limit, 233k stock. TI alt: TPS2553DBVR (C55266). |
+| VBUS switch (x3) | TPS2553DBVR | C55266 | 0.54 | **Changed 2026-10-08 while drawing usb-port:** SY6280AAC (C55136, still imported as the alternate) has no fault output, so the hub's OVERCURxz could never see an over-current. TPS2553: FAULT open-drain → hub, EN active high from PWRCTLx, RILIM 16.9 kΩ → 1.51 A. |
 | USB-C CC + SS mux | HD3SS3220RNHR | C165155 | 1.89 | The standard UFP orientation part; 5.5k stock. |
 | Ideal diode ctrl | LM74700QDBVRQ1 | C2941042 | 1.06 | 65 V, drives external NFET (pick FET by input current). |
 | TVS, rails | SMBJ24A / SMBJ13A / SMBJ6.0A | C19077578 / C19077567 / C19077560 | ~0.05 | All **Basic** (hongjiacheng). 19 V in / 12 V servo / 5 V servo respectively. |
@@ -36,6 +36,39 @@ datasheet read before the schematic is drawn.**
 | 19 V out (Jetson) | XT30PW-M or DC-005-A200 | C431092 / C720557 | 0.38 / 0.14 | ~2.1 A at 40 W, so the 3 A barrel is acceptable here if you want a barrel-to-barrel cable; XT30 is more robust. |
 | USB-A 3.0 recept (x3) | HC-ST-003-01-J | C2845330 | 0.13 | 9-pin THT right-angle, shell stakes. |
 | USB-C recept (upstream) | TYPE-C 24P QT | C2681555 | 0.54 | **Must be 24P full-featured female** for SuperSpeed -- the plentiful 16P parts are USB2-only, and one 24P hit (C3151751) is male. Alt: C456013. |
+
+### Parts added during schematic capture (resolved against JLCPCB's live catalog, 2026-10-08)
+
+`jlcpcb_parts.db` was unusable that day (see README.md), so these were looked up
+one by one with JLCPCB's component search; stock is the figure returned then.
+Values for the bucks are the TI reference designs (LM5145 datasheet application
+circuits 1 and 2, TPS54560 datasheet figure 33, TLV62569 §8.2); E96 resistors
+are the UNI-ROYAL 0603WAF series.
+
+| Role | Part | LCSC | Stock | Note |
+|------|------|------|-------|------|
+| Buck + ideal-diode N-FET (×5) | CSD18532Q5B, 60 V, 2.5 mΩ, SON 5×6 | C882766 | 2426 | TI, same package as the datasheet's CSD18563Q5A; RILIM recomputed for 2.5 mΩ (240 Ω / 150 Ω) |
+| 12 V buck inductor | TMPA1265SP-4R7MN-D 4.7 µH 20 A / 25 A sat | C2880057 | 1243 | TAI-TECH, 13.5 × 12.6 mm like the Cyntec part TI lists |
+| 5 V servo buck inductor | TMPC1265HP-3R3MG-D 3.3 µH 18 A / 30 A sat | C357272 | 753 | |
+| 5 V USB buck inductor | 7447798720 7.2 µH 6 A | C105681 | 406 | Würth, the TPS54560EVM part |
+| 3V3 / 1V1 buck inductor (×2) | SMNR4020-2.2UH 2.2 µH 3.4 A | C135262 | 103006 | |
+| Catch diode, TPS54560 | B560C-13-F 60 V 5 A SMC | C85100 | 150633 | Diodes Inc, the EVM part |
+| 100 V input ceramics | C3225X7S2A475KT000N 4.7 µF 100 V 1210 (×5) / C3225X7R2A225KT5L0U 2.2 µF 100 V 1210 (×9) | C342614 / C76686 | 4656 / 1572 | TDK |
+| Buck output ceramics | GRM32ER61C476KE15L 47 µF 16 V 1210 (×7) / CS3225X7R226K250NRL 22 µF 25 V 1210 (×2) | C77101 / C2918511 | 225941 / 85727 | Murata / Samwha |
+| 12 V bulk + per-port (×6) | MA25V470M8X10 470 µF 25 V polymer, 25 mΩ | C46550466 | 128243 | jieerrui |
+| 5 V bulk + per-port (×5) | MA10V470M6X8 470 µF 10 V polymer, 20 mΩ | C46550459 | 81105 | |
+| 19 V input bulk (×2) | RVE470UF35V167RV084 470 µF 35 V, 230 mΩ | C5155332 | 8698 | KNSCHA |
+| Input fuse | 0453015.MR 15 A time-lag 2410 | C178997 | 530 | Littelfuse |
+| Jetson fuse | 1206TD-4A 4 A time-lag 1206, 72 V | C2838918 | 374 | prosemi |
+| Hub crystal | X322524MRB4SI 24 MHz 18 pF 3225 | C70571 | 44317 | YXC; 30 pF load caps |
+| CH344 crystal | X50328MSB2GI 8 MHz 20 pF 5032 | C115962 | Basic | CDFER library; 33 pF load caps |
+| Ferrites | BLM18PG221SN1D 0603 1.4 A (hub core) / BLM21PG221SN1D 0805 2 A (USB-A VBUS ×3) | C80165 / C85840 | 317212 / 262582 | Murata |
+| RS-485 TVS (×4) | PSM712-LF-T7 | C32677 | Basic | ProTek SM712 equivalent, CDFER library |
+| TTL DATA TVS (×4) | SMF5.0A SOD-123FL | C19077497 | Basic | hongjiacheng, CDFER library |
+| VCC bias diode (12 V buck) | SS14 | C2480 | Basic | |
+| Rail LEDs (×6) | 0805 green | C2297 | Basic | |
+| E96 resistors 0603 1 % | 2.37k C25964 · 24.9k C25962 · 80.6k C23249 · 33.2k C23003 · 23.2k C23346 · 4.42k C23043 · 422 C23052 · 402 C23049 · 90.9k C23129 · 53.6k C23074 · 10.2k C22772 · 16.9k C25954 · 243k C23351 · 442k C23175 · 9.53k C23127 · 4.02k C23040 · 18.2k C22892 · 20.5k C22910 · 249k C22918 · 453k C25818 · 910k C23263 | — | ≥ 250 each | UNI-ROYAL 0603WAF |
+| E24 resistors / ceramics | JLC Basic parts from the CDFER library (`tools/schematic-gen/common.py` has the full value → LCSC table) | — | Basic | |
 
 Raw query noise to ignore below: HD3SS6126 and PTN36241G in the hub tables are
 *redrivers*, not hubs; the "TPS16-N1F1" rows in the eFuse table are USB-C

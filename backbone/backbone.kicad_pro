@@ -146,7 +146,7 @@
       },
       "rules": {
         "max_error": 0.005,
-        "min_clearance": 0.0,
+        "min_clearance": 0.127,
         "min_connection": 0.0,
         "min_copper_edge_clearance": 0.5,
         "min_groove_width": 0.0,
@@ -508,7 +508,7 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.2,
+        "clearance": 0.127,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -677,6 +677,87 @@
       ],
       "/US_SSTX_P": [
         "USB3_SS"
+      ],
+      "/servo-uart/UDM": [
+        "USB2_HS"
+      ],
+      "/servo-uart/UDP": [
+        "USB2_HS"
+      ],
+      "/usb-hub/SW_1V1": [
+        "SW_NODE"
+      ],
+      "/usb-port-1/DM_J": [
+        "USB2_HS"
+      ],
+      "/usb-port-1/DP_J": [
+        "USB2_HS"
+      ],
+      "/usb-port-1/SSTX_N_J": [
+        "USB3_SS"
+      ],
+      "/usb-port-1/SSTX_P_J": [
+        "USB3_SS"
+      ],
+      "/usb-port-2/DM_J": [
+        "USB2_HS"
+      ],
+      "/usb-port-2/DP_J": [
+        "USB2_HS"
+      ],
+      "/usb-port-2/SSTX_N_J": [
+        "USB3_SS"
+      ],
+      "/usb-port-2/SSTX_P_J": [
+        "USB3_SS"
+      ],
+      "/usb-port-3/DM_J": [
+        "USB2_HS"
+      ],
+      "/usb-port-3/DP_J": [
+        "USB2_HS"
+      ],
+      "/usb-port-3/SSTX_N_J": [
+        "USB3_SS"
+      ],
+      "/usb-port-3/SSTX_P_J": [
+        "USB3_SS"
+      ],
+      "/usbc-upstream/C_RX1N": [
+        "USB3_SS"
+      ],
+      "/usbc-upstream/C_RX1P": [
+        "USB3_SS"
+      ],
+      "/usbc-upstream/C_RX2N": [
+        "USB3_SS"
+      ],
+      "/usbc-upstream/C_RX2P": [
+        "USB3_SS"
+      ],
+      "/usbc-upstream/C_TX1N": [
+        "USB3_SS"
+      ],
+      "/usbc-upstream/C_TX1P": [
+        "USB3_SS"
+      ],
+      "/usbc-upstream/C_TX2N": [
+        "USB3_SS"
+      ],
+      "/usbc-upstream/C_TX2P": [
+        "USB3_SS"
+      ],
+      "/usbc-upstream/DM_C": [
+        "USB2_HS"
+      ],
+      "/usbc-upstream/DP_C": [
+        "USB2_HS"
+      ],
+      "/usbc-upstream/SSTX_N_C": [
+        "USB3_SS"
+      ],
+      "/usbc-upstream/SSTX_P_C": [
+        "USB3_SS"
       ]
     },
     "netclass_patterns": [
@@ -706,7 +787,7 @@
       },
       {
         "netclass": "PWR_USB",
-        "pattern": "/usb-port-*/VBUS_OUT"
+        "pattern": "/usb-port-*/VBUS_*"
       },
       {
         "netclass": "SW_NODE",
@@ -727,6 +808,10 @@
       {
         "netclass": "TTL_DATA",
         "pattern": "/servo-port-*/DATA"
+      },
+      {
+        "netclass": "SW_NODE",
+        "pattern": "/usb-hub/SW_1V1"
       }
     ]
   },

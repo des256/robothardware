@@ -26,13 +26,16 @@ all hardware behaviour plus standard Linux USB drivers.
 
 | # | Connector | Qty | Direction | Carries | Rail / limit |
 |---|-----------|-----|-----------|---------|--------------|
-| J1 | 19 V IN — XT30PW-M | 1 | in | Adapter power | 19 V, adapter-rated (§4 budget); TVS + ideal diode + fuse behind it |
-| J2 | 19 V OUT — XT30PW-M (or barrel, D6) | 1 | out | Jetson carrier power | 19 V passthrough, fused ~3 A class |
-| J3 | USB-C upstream — 24-pin receptacle | 1 | in (host) | USB 3.0 SS + USB 2.0 from Jetson | VBUS *not* used for power (§6) |
-| J4–J6 | USB-A 3.0 downstream | 3 | out (device side) | USB 3.0 SS + 2.0, generic | +5V_USB, 1.5 A each, switched |
-| J7–J10 | Servo RS-485 — JST B4B-EH-A | 4 | bus | `1 GND · 2 VDD · 3 D+ · 4 D−` | +12V_SERVO, per-port e-fuse |
-| J11–J14 | Servo TTL — JST B3B-EH-A | 4 | bus | `1 GND · 2 VDD · 3 DATA` | +5V_SERVO (**D1**), per-port e-fuse |
+| J201 | 19 V IN — XT30PW-M | 1 | in | Adapter power | 19 V, adapter-rated (§4 budget); 15 A time-lag fuse, LM74700 ideal diode, SMBJ24A behind it |
+| J202 | 19 V OUT — XT30PW-M (or barrel, D6) | 1 | out | Jetson carrier power | 19 V passthrough, 4 A time-lag fuse |
+| J601 | USB-C upstream — 24-pin receptacle | 1 | in (host) | USB 3.0 SS + USB 2.0 from Jetson | VBUS *not* used for power (§6) |
+| J801, J901, J1001 | USB-A 3.0 downstream | 3 | out (device side) | USB 3.0 SS + 2.0, generic | +5V_USB, 1.51 A each (TPS2553), switched by the hub |
+| J1201, J1301, J1401, J1501 | Servo RS-485 — JST B4B-EH-A | 4 | bus | `1 GND · 2 VDD · 3 D+ · 4 D−` | +12V_SERVO, TPS16630 e-fuse 4.5 A per port |
+| J1202, J1302, J1402, J1502 | Servo TTL — JST B3B-EH-A | 4 | bus | `1 GND · 2 VDD · 3 DATA` | +5V_SERVO (**D1**), TPS25961 e-fuse ≈ 2 A per port |
 | — | Test points, rail LEDs, mode jumpers | — | — | Bring-up (§9) | — |
+
+Designators are sheet × 100 + n (README.md); the servo-port x/y pairs belong to
+servo port *n* = UART *n* (J12x1 = port 0, J13x1 = port 1, …).
 
 Pinouts are ROBOTIS's (`datasheets/reference/robotis/`). RS-485 and TTL
 connectors of the same servo port share one UART; one is populated with a
@@ -51,13 +54,13 @@ cable at a time (§5.3).
      │          +12V_SERVO 10–20 A     +5V_SERVO 5–10 A      +5V_USB 5 A
   J2 19V OUT       │                      │                      │
   (Jetson)   ┌─────┼─────┐          ┌─────┼─────┐         ┌──────┼──────┐
-             4× [eFuse+cap+TVS]     4× [eFuse+cap+TVS]    3× [SY6280 1.5A] [TLV62569]
+             4× [eFuse+cap+TVS]     4× [eFuse+cap+TVS]    3× [TPS2553 1.5A] [TLV62569]
              J7–J10 VDD             J11–J14 VDD           J4–J6 VBUS      +3V3 ─┐
                                                                                 │
  ──────────────────────────── data ─────────────────────────────────────────────┤
                                                                                 │
   J3 USB-C ──[HD3SS3220 CC + SS mux]──┐                                         │
-   (Jetson host)                      ▼                          hub core LDO ◄─┤
+   (Jetson host)                      ▼                   +1V1_HUB buck (TLV62569) ◄─┤
                              [TUSB8041 4-port hub]  ◄── 3V3, 1V1               │
                     ┌────────┬────────┼──────────────┐                          │
                    DS1      DS2      DS3            DS4 (USB 2.0 only)          │
@@ -85,9 +88,9 @@ USB rail is `+5V_USB`; every load symbol carries `max_mA`.
 | +19V_JETSON (J2) | +19V_IN via fuse / load switch | Jetson carrier | ~40 W → ~2.1 A | Fuse | Same as input (Jetson boots as soon as power arrives) |
 | +12V_SERVO | Buck A (LM5145 + FETs) | 4× RS-485 servo ports | Sum of stall of the RS-485 fleet, bounded by per-port e-fuses | Per port: e-fuse (TPS1663x class), ≥ 470 µF low-ESR, SMBJ13A | Up at power-on; per-port e-fuse soft-start staggers inrush (**D3**: always-on vs software-controlled) |
 | +5V_SERVO | Buck B (same LM5145 design, 5 V divider) | 4× TTL servo ports | Sum of stall of the TTL fleet, bounded by per-port e-fuses | Per port: e-fuse (TPS25961 class if ≤ 2 A, else TPS1663x), ≥ 470 µF, SMBJ6.0A | As above. **Never merged with +5V_USB** |
-| +5V_USB | Buck C (TPS54560) | 3× VBUS switches + 3V3 buck | 3 × 1.5 A + 3V3 load ≈ 5 A | Per port: SY6280 current limit 1.5 A, fault → hub | Port VBUS switched on by the hub (`PWRCTLx`) after enumeration |
+| +5V_USB | Buck C (TPS54560) | 3× VBUS switches + 3V3 and 1V1 bucks + HD3SS3220 VDD5 | 3 × 1.5 A + 3V3 load ≈ 5 A | Per port: TPS2553 current limit 1.51 A (RILIM 16.9 kΩ), FAULT → hub `OVERCURxz` | Port VBUS switched on by the hub (`PWRCTLx`) after enumeration |
 | +3V3 | TLV62569 from +5V_USB | Hub I/O, HD3SS3220, CH344Q, transceivers, buffers | < 0.5 A | — | Up with +5V_USB |
-| +1V1_HUB | LDO per TUSB8041 datasheet (0.99–1.26 V) | Hub core | per DS | — | Sequenced per hub DS |
+| +1V1_HUB | TLV62569 buck from +5V_USB, 1.09 V (82 k / 100 k), ferrite into the hub's VDD pins (**D7**: the EVM's TPS74801 LDO is the fallback if core noise is a problem) | Hub core | ≤ 778 mA per DS | — | Up with +5V_USB; GRSTz released ≈ 100 ms later by its RC |
 | VBUS (upstream) | Jetson, through J3 | HD3SS3220 `VBUS_DET` (900 kΩ) and TUSB8041 `USB_VBUS` (90.9 kΩ divider) — **detection only** | ~0 | < 10 µF total on this net (USB inrush rule; `kkh` checks it) | — |
 
 ### 4.1 Fleet worksheet (input to D1)
@@ -246,8 +249,10 @@ the Jetson cannot back-power it, it cannot back-power the Jetson, and the
 
 ### 6.3 Generic downstream ports (J4–J6)
 
-- Identical wiring, identical 1.5 A limit (SY6280 `Rset` per `Ilim = 6800/Rset`),
-  identical ESD (TPD4E05U06 on SS, USBLC6-2 on D+/D−). Any device fits any port.
+- Identical wiring, identical 1.5 A limit (TPS2553, `RILIM` 16.9 kΩ →
+  `IOS = 23950 / RILIM^0.977 mA` = 1.51 A; the SY6280 of the first draft had no
+  fault output, so the hub could never have seen an over-current), identical
+  ESD (TPD4E05U06 on SS, USBLC6-2 on D+/D−). Any device fits any port.
 - **Software contract:** devices are identified by **VID/PID** (as the existing
   ReSpeaker udev rule already does). Nothing may key on `/dev/serial/by-path`
   or USB topology for J4–J6, because a device can move ports. The servo UARTs
@@ -307,7 +312,8 @@ servos → RealSense last.
 | **D3** | Servo e-fuse behaviour: latch vs auto-retry; enable always-on vs GPIO (per-bus e-stop, staggered start) | Servo power sheet, software contract §8.6 | HW + SW |
 | **D4** | Hub chip: TUSB8041 vs alternatives, after checking librealsense issue history | Hub sheet | HW |
 | **D5** | Hub configuration: pure pin-strap vs EEPROM (custom VID/PID, suspend port-power behaviour) | Hub sheet | HW |
-| **D6** | Jetson carrier model → accepted input range/polarity, J2 connector type | Input sheet | Robot design |
+| **D6** | Jetson carrier model → accepted input range/polarity, J202 connector type | Input sheet | Robot design |
+| **D7** | +1V1_HUB: TLV62569 buck (drawn) vs TPS74801 LDO as on the TI EVM — decide after measuring core-rail noise / USB 3 eye | Hub sheet | HW |
 | **V1** | TNOW polarity on CH344Q (scope the existing dongle) | Front-end gating; may add inverter | HW |
 | **V2** | TNOW release latency after stop bit vs Dynamixel Return Delay Time | Software contract §8.4 | HW + SW |
 | **V3** | LM5145 behaviour on output overvoltage from regen (stops switching?) | Servo rail protection | HW |

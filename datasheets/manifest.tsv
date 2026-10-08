@@ -33,3 +33,16 @@ dc-005-a200.pdf	C720557	DC-005-A200	conn-19v-out-alt	https://jlcpcb.com/api/file
 usba3-hc-st-003-01-j.pdf	C2845330	HC-ST-003-01-J	conn-usba3	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588944600710569984
 usbc-24p-qt.pdf	C2681555	TYPE-C 24P QT	conn-usbc	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8756352863621144576
 usbc-24p-qcht.pdf	C456013	TYPE-C 24P QCHT	conn-usbc-alt	https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8756352776610172928
+csd18532q5b.pdf	C882766	CSD18532Q5B	buck-fet	https://www.ti.com/cn/lit/gpn/csd18532q5b
+tmpa1265sp-4r7.pdf	C2880057	TMPA1265SP-4R7MN-D	buck-12v-inductor	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2108241130_TAI-TECH-TMPA1265SP-4R7MN-D_C2880057.pdf
+tmpc1265hp-3r3.pdf	C357272	TMPC1265HP-3R3MG-D	buck-5v-inductor	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2009171339_TAI-TECH-TMPC1265HP-3R3MG-D_C357272.pdf
+we-7447798720.pdf	C105681	7447798720	buck-5v-usb-inductor	https://www.we-online.com/components/products/datasheet/7447798720.pdf
+smnr4020-2r2.pdf	C135262	SMNR4020-2.2UH	buck-3v3-inductor	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2108131530_SXN-Shun-Xiang-Nuo-Elec-SMNR4020-2-2UH_C135262.pdf
+b560c.pdf	C85100	B560C-13-F	catch-diode	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2412251154_Diodes-Incorporated-B560C-13-F_C85100.pdf
+tdk-c3225x7s2a475k.pdf	C342614	C3225X7S2A475KT000N	cap-100v	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_TDK-C3225X7S2A475KT000N_C342614.pdf
+tdk-c3225x7r2a225k.pdf	C76686	C3225X7R2A225KT5L0U	cap-100v	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_TDK-C3225X7R2A225KT5L0U_C76686.pdf
+murata-grm32er61c476k.pdf	C77101	GRM32ER61C476KE15L	cap-out	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2212021100_Murata-Electronics-GRM32ER61C476KE15L_C77101.pdf
+samwha-cs3225x7r226k.pdf	C2918511	CS3225X7R226K250NRL	cap-out	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2111172030_Samwha-Capacitor-CS3225X7R226K250NRL_C2918511.pdf
+rve470uf35v.pdf	C5155332	RVE470UF35V167RV084	bulk-19v	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2209011730_KNSCHA-RVE470UF35V167RV084_C5155332.pdf
+littelfuse-0453015.pdf	C178997	0453015.MR	fuse-19v	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Littelfuse-0453015-MR_C178997.pdf
+prosemi-1206td-4a.pdf	C2838918	1206TD-4A	fuse-jetson	https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2204131745_prosemi-1206TD-4A_C2838918.pdf

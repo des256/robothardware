@@ -10,7 +10,7 @@ while IFS=$'\t' read -r file lcsc mpn block url; do
   if [[ -s "$file" ]] && head -c4 "$file" | grep -q '%PDF'; then
     printf '%-28s ok (cached)\n' "$file"; continue
   fi
-  code=$(curl -sSL -m 120 -A "$UA" -o "$file" -w '%{http_code}' "$url" 2>&1)
+  code=$(curl -sSL -m 120 -A "$UA" -e 'https://www.lcsc.com/' -o "$file" -w '%{http_code}' "$url" 2>&1)
   if [[ -s "$file" ]] && head -c4 "$file" | grep -q '%PDF'; then
     printf '%-28s ok  %s  %s\n' "$file" "$code" "$(du -h "$file" | cut -f1)"
   else
