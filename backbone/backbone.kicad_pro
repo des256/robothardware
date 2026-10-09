@@ -253,7 +253,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "A"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -953,13 +953,74 @@
       {
         "filename": "backbone.kicad_sch",
         "name": "backbone",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "a5b47dc5-6b70-4377-9b8b-b0e1e9cf73c9"
       }
     ],
-    "used_designators": "",
+    "used_designators": "#PWR314",
     "variants": []
   },
-  "sheets": [],
+  "sheets": [
+    [
+      "a5b47dc5-6b70-4377-9b8b-b0e1e9cf73c9",
+      "backbone"
+    ],
+    [
+      "1cd0f6ee-bebd-521d-83f6-288238f7277a",
+      "input"
+    ],
+    [
+      "7f47ba9b-e691-5b20-936d-e05cf3f2a624",
+      "buck-12v-servo"
+    ],
+    [
+      "474b5dc6-254b-57c7-9ed0-ea6f87f0b333",
+      "buck-5v-servo"
+    ],
+    [
+      "4f07747c-dfa2-5c24-97fc-52d4a6816acd",
+      "buck-5v-usb"
+    ],
+    [
+      "ad7cfe11-859b-511e-a8b2-69b239aadeb0",
+      "usbc-upstream"
+    ],
+    [
+      "4e09aa6d-603e-5dfa-a2cb-2367892dba76",
+      "usb-hub"
+    ],
+    [
+      "3380f7a1-d05b-55dc-a4e1-9b7eda422e8d",
+      "usb-port-1"
+    ],
+    [
+      "9a0c8cec-fe0b-5100-85eb-d79f28022c59",
+      "usb-port-2"
+    ],
+    [
+      "593158b0-2cc3-569d-9afb-6d50ef6a3d81",
+      "usb-port-3"
+    ],
+    [
+      "4dc6ee2f-8fce-5574-984e-7f87f1ca05db",
+      "servo-uart"
+    ],
+    [
+      "21c964cd-9b36-56d9-a6db-ac95fa88061c",
+      "servo-port-0"
+    ],
+    [
+      "ae4757d7-23f2-5ca1-9b0c-021a00ce3a96",
+      "servo-port-1"
+    ],
+    [
+      "e6ef0819-6891-5270-a438-20f67084d242",
+      "servo-port-2"
+    ],
+    [
+      "18384b4d-c889-5e2f-979d-4984f98d818e",
+      "servo-port-3"
+    ]
+  ],
   "text_variables": {
     "KKH_VERSION_DATE": "0000-00-00-unbuilt"
   },
