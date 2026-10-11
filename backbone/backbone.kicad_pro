@@ -482,6 +482,7 @@
       "pin_to_pin": "warning",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
+      "same_local_global_power": "warning",
       "similar_label_and_power": "warning",
       "similar_labels": "warning",
       "similar_power": "warning",
@@ -654,12 +655,6 @@
       "/DS3_SSTX_P": [
         "USB3_SS"
       ],
-      "/DS4_DM": [
-        "USB2_HS"
-      ],
-      "/DS4_DP": [
-        "USB2_HS"
-      ],
       "/US_DM": [
         "USB2_HS"
       ],
@@ -677,15 +672,6 @@
       ],
       "/US_SSTX_P": [
         "USB3_SS"
-      ],
-      "/servo-uart/UDM": [
-        "USB2_HS"
-      ],
-      "/servo-uart/UDP": [
-        "USB2_HS"
-      ],
-      "/usb-hub/SW_1V1": [
-        "SW_NODE"
       ],
       "/usb-port-1/DM_J": [
         "USB2_HS"
